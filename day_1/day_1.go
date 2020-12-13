@@ -28,11 +28,11 @@ func FindSucceedingPair(lines []int) Pair {
 		value, lines, _ = utils.PopFirstElementOfSlice(lines)
 		searchedValue := WantedValue - value
 		pos, _ := utils.FindIntPosInSlice(searchedValue, lines)
-		if pos > 0 {
+		if pos >= 0 {
 			return Pair{value, lines[pos]}
 		}
 	}
-	log.Fatal("No Pair found")
+	log.Println("No Pair found")
 	return Pair{}
 }
 
@@ -46,7 +46,7 @@ func FindSucceedingTriplet(lines []int) Triplet {
 			secondPartOfTriplet, lines, _ = utils.PopFirstElementOfSlice(lines)
 			searchedValue := WantedValue - firstPartOfTriplet - secondPartOfTriplet
 			pos, _ := utils.FindIntPosInSlice(searchedValue, lines)
-			if pos > 0 {
+			if pos >= 0 {
 				return Triplet{firstPartOfTriplet, secondPartOfTriplet, lines[pos]}
 			} else {
 				lines = utils.InsertInSliceAtPosition(lines, 0, secondPartOfTriplet)
@@ -54,6 +54,6 @@ func FindSucceedingTriplet(lines []int) Triplet {
 			}
 		}
 	}
-	log.Fatal("No Triplet found")
+	log.Println("No Triplet found")
 	return Triplet{}
 }

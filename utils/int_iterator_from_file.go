@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 	"strconv"
+	"time"
 )
 
 func IntIteratorFromFile(filename string) <-chan int {
@@ -14,14 +15,15 @@ func IntIteratorFromFile(filename string) <-chan int {
 	}
 	defer file.Close()
 
-	scanner := bufio.NewScanner(file)
 	ch := make(chan int)
-	go func() {
+	go func(inputFile *os.File) {
+		scanner := bufio.NewScanner(inputFile)
 		for scanner.Scan() {
 			inputIntAsInt64, _ := strconv.ParseInt(scanner.Text(), 10, 64)
 			ch <- int(inputIntAsInt64)
 		}
 		close(ch)
-	}()
+	}(file)
+	time.Sleep(100 * time.Millisecond)
 	return ch
 }

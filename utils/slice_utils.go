@@ -31,5 +31,5 @@ func FindIntPosInSlice(searchedValue int, list []int) (int, error) {
 			return i, nil
 		}
 	}
-	return 0, errors.New("searched int not present in slice")
+	return -1, errors.New("searched int not present in slice")
 }
