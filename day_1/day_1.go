@@ -5,6 +5,11 @@ import (
 	"log"
 )
 
+func ResolveDay1(inputFilePath string) (Pair, Triplet) {
+	lines := utils.LoadDataFromFileAndSortThem(inputFilePath)
+	return findSucceedingPair(lines), findSucceedingTriplet(lines)
+}
+
 type Pair struct {
 	RightMember int
 	LeftMember  int
@@ -16,12 +21,7 @@ type Triplet struct {
 	ThirdMember  int
 }
 
-func ResolveDay1(inputFilePath string) (Pair, Triplet) {
-	lines := utils.LoadDataFromFileAndSortThem(inputFilePath)
-	return FindSucceedingPair(lines), FindSucceedingTriplet(lines)
-}
-
-func FindSucceedingPair(lines []int) Pair {
+func findSucceedingPair(lines []int) Pair {
 	WantedValue := 2020
 	var value = 0
 	for len(lines) > 0 {
@@ -36,7 +36,7 @@ func FindSucceedingPair(lines []int) Pair {
 	return Pair{}
 }
 
-func FindSucceedingTriplet(lines []int) Triplet {
+func findSucceedingTriplet(lines []int) Triplet {
 	WantedValue := 2020
 	for len(lines) > 0 {
 		var firstPartOfTriplet int
