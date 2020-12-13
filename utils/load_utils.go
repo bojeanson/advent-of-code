@@ -17,3 +17,11 @@ func LoadDataFromFileAndSortThem(filename string) []int {
 	}
 	return lines
 }
+
+func LoadDataFromFile(filename string) []string {
+	var lines []string
+	for inputString := range StringIteratorFromFile(filename) {
+		lines = append(lines, inputString)
+	}
+	return lines
+}
