@@ -17,6 +17,7 @@ var (
 
 	day2           = app.Command("day_2", "resolve day_2 problem")
 	day2Action     = day2.Action(uday2)
+	part1Or2       = day2.Arg("part", "which part of day_2 problem to resolve").Default("1").String()
 	inputFilePath2 = day2.Arg("input_file", "the path to the file needed for day_2 problem").Default("./day_2/input.txt").String()
 )
 
@@ -36,7 +37,7 @@ func uday1(c *kingpin.ParseContext) error {
 }
 
 func uday2(c *kingpin.ParseContext) error {
-	validPasswordCount := day_2.ResolveDay2(*inputFilePath2)
+	validPasswordCount := day_2.ResolveDay2(*part1Or2, *inputFilePath2)
 	fmt.Println("nombre de password valides :", validPasswordCount)
 	return nil
 }
