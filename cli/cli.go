@@ -5,6 +5,7 @@ import (
 	"github.com/bojeanson/advent_of_code/day_1"
 	"github.com/bojeanson/advent_of_code/day_2"
 	"github.com/bojeanson/advent_of_code/day_3"
+	"github.com/bojeanson/advent_of_code/day_4"
 	"os"
 
 	"gopkg.in/alecthomas/kingpin.v2"
@@ -25,6 +26,10 @@ var (
 	day3           = app.Command("day_3", "resolve day_3 problem")
 	day3Action     = day3.Action(uday3)
 	inputFilePath3 = day3.Arg("input_file", "the path to the file needed for day_3 problem").Default("./day_3/input.txt").String()
+
+	day4           = app.Command("day_4", "resolve day_4 problem")
+	day4Action     = day4.Action(uday4)
+	inputFilePath4 = day4.Arg("input_file", "the path to the file needed for day_4 problem").Default("./day_4/input.txt").String()
 )
 
 func Parse(args []string) {
@@ -51,5 +56,11 @@ func uday2(c *kingpin.ParseContext) error {
 func uday3(c *kingpin.ParseContext) error {
 	countTree := day_3.ResolveDay3(*inputFilePath3)
 	fmt.Println("nombre d'arbres :", countTree)
+	return nil
+}
+
+func uday4(c *kingpin.ParseContext) error {
+	validPassports := day_4.ResolveDay4(*inputFilePath4)
+	fmt.Println("nombre de passeports valides :", validPassports)
 	return nil
 }
