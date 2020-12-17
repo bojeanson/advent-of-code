@@ -33,3 +33,15 @@ func FindIntPosInSlice(searchedValue int, list []int) (int, error) {
 	}
 	return -1, errors.New("searched int not present in slice")
 }
+
+func AllElementsEqualToExceptOne(a []string, element string) (bool, int) {
+	allEqualExceptOne := 0
+	elementPos := 0
+	for i := 1; i < len(a); i++ {
+		if a[i] != element {
+			allEqualExceptOne += 1
+			elementPos = i
+		}
+	}
+	return allEqualExceptOne == 1, elementPos
+}
