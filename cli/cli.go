@@ -22,7 +22,7 @@ var (
 
 	day2           = app.Command("day_2", "resolve day_2 problem")
 	day2Action     = day2.Action(uday2)
-	part1Or2       = day2.Arg("part", "which part of day_2 problem to resolve").Default("1").String()
+	part1Or2Day2   = day2.Arg("part", "which part of day_2 problem to resolve").Default("1").String()
 	inputFilePath2 = day2.Arg("input_file", "the path to the file needed for day_2 problem").Default("./day_2/input.txt").String()
 
 	day3           = app.Command("day_3", "resolve day_3 problem")
@@ -39,6 +39,7 @@ var (
 
 	day6           = app.Command("day_6", "resolve day_6 problem")
 	day6Action     = day6.Action(uday6)
+	part1Or2Day6   = day6.Arg("part", "which part of day_6 problem to resolve").Default("1").String()
 	inputFilePath6 = day6.Arg("input_file", "the path to the file needed for day_6 problem").Default("./day_6/input.txt").String()
 )
 
@@ -58,7 +59,7 @@ func uday1(c *kingpin.ParseContext) error {
 }
 
 func uday2(c *kingpin.ParseContext) error {
-	validPasswordCount := day_2.ResolveDay2(*part1Or2, *inputFilePath2)
+	validPasswordCount := day_2.ResolveDay2(*part1Or2Day2, *inputFilePath2)
 	fmt.Println("nombre de password valides :", validPasswordCount)
 	return nil
 }
@@ -82,7 +83,7 @@ func uday5(c *kingpin.ParseContext) error {
 }
 
 func uday6(c *kingpin.ParseContext) error {
-	nbAnswers := day_6.ResolveDay6(*inputFilePath6)
+	nbAnswers := day_6.ResolveDay6(*part1Or2Day6, *inputFilePath6)
 	fmt.Println("Nombre de réponses répondues :", nbAnswers)
 	return nil
 }
