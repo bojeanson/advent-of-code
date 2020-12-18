@@ -15,7 +15,7 @@ func Test_checkSlope(t *testing.T) {
 		{
 			name: "Should encounter 1 tree with right 1 and down 1",
 			args: args{
-				filename:   "test_input.txt",
+				filename:   "test_input.txt.txt",
 				inputSlope: slope{1, 1},
 			},
 			want: 1,
@@ -23,7 +23,7 @@ func Test_checkSlope(t *testing.T) {
 		{
 			name: "Should encounter 4 tree with right 3 and down 1",
 			args: args{
-				filename:   "test_input.txt",
+				filename:   "test_input.txt.txt",
 				inputSlope: slope{3, 1},
 			},
 			want: 4,
@@ -31,7 +31,7 @@ func Test_checkSlope(t *testing.T) {
 		{
 			name: "Should encounter 0 tree with right 1 and down 2",
 			args: args{
-				filename:   "test_input.txt",
+				filename:   "test_input.txt.txt",
 				inputSlope: slope{1, 2},
 			},
 			want: 0,

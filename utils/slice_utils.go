@@ -34,6 +34,24 @@ func FindIntPosInSlice(searchedValue int, list []int) (int, error) {
 	return -1, errors.New("searched int not present in slice")
 }
 
+func CharInString(searchedChar string, input string) bool {
+	for i := 0; i < len(input); i++ {
+		if string(input[i]) == searchedChar {
+			return true
+		}
+	}
+	return false
+}
+
+func FindCharPosInSlice(searchedChar string, input string) (int, error) {
+	for i := 0; i < len(input); i++ {
+		if string(input[i]) == searchedChar {
+			return i, nil
+		}
+	}
+	return -1, errors.New("searched int not present in slice")
+}
+
 func AllElementsEqualToExceptOne(a []string, element string) (bool, int) {
 	allEqualExceptOne := 0
 	elementPos := 0

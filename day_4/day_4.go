@@ -13,12 +13,10 @@ func ResolveDay4(filename string) int {
 	for inputString := range utils.StringIteratorFromFile(filename) {
 		switch inputString {
 		case "":
-			if inputString == "" {
-				if checkPassportValidity(currentPassport) {
-					validPassports += 1
-				}
-				currentPassport = passport{}
+			if checkPassportValidity(currentPassport) {
+				validPassports += 1
 			}
+			currentPassport = passport{}
 		default:
 			currentPassport = checkFields(inputString, currentPassport)
 		}

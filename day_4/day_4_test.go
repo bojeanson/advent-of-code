@@ -15,7 +15,7 @@ func TestResolveDay4(t *testing.T) {
 		want int
 	}{
 		{
-			name: "Should",
+			name: "Should return 5 valid passports",
 			args: args{
 				filename: "test_input.txt",
 			},
@@ -26,26 +26,6 @@ func TestResolveDay4(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := ResolveDay4(tt.args.filename); got != tt.want {
 				t.Errorf("ResolveDay4() = %v, want %v", got, tt.want)
-			}
-		})
-	}
-}
-
-func Test_checkPassportValidity(t *testing.T) {
-	type args struct {
-		currentPassport passport
-	}
-	tests := []struct {
-		name string
-		args args
-		want bool
-	}{
-		// TODO: Add test cases.
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			if got := checkPassportValidity(tt.args.currentPassport); got != tt.want {
-				t.Errorf("checkPassportValidity() = %v, want %v", got, tt.want)
 			}
 		})
 	}
@@ -72,27 +52,6 @@ func Test_validPid(t *testing.T) {
 	}
 }
 
-func Test_validateByr(t *testing.T) {
-	type args struct {
-		inputString     string
-		currentPassport passport
-	}
-	tests := []struct {
-		name string
-		args args
-		want passport
-	}{
-		// TODO: Add test cases.
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			if got := validateByr(tt.args.inputString, tt.args.currentPassport); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("validateByr() = %v, want %v", got, tt.want)
-			}
-		})
-	}
-}
-
 func Test_validateEcl(t *testing.T) {
 	type args struct {
 		inputString     string
@@ -110,27 +69,6 @@ func Test_validateEcl(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := validateEcl(tt.args.inputString, tt.args.currentPassport); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("validateEcl() = %v, want %v", got, tt.want)
-			}
-		})
-	}
-}
-
-func Test_validateEyr(t *testing.T) {
-	type args struct {
-		inputString     string
-		currentPassport passport
-	}
-	tests := []struct {
-		name string
-		args args
-		want passport
-	}{
-		// TODO: Add test cases.
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			if got := validateEyr(tt.args.inputString, tt.args.currentPassport); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("validateEyr() = %v, want %v", got, tt.want)
 			}
 		})
 	}
@@ -178,27 +116,6 @@ func Test_validateHgt(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := validateHgt(tt.args.inputString, tt.args.currentPassport); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("validateHgt() = %v, want %v", got, tt.want)
-			}
-		})
-	}
-}
-
-func Test_validateIyr(t *testing.T) {
-	type args struct {
-		inputString     string
-		currentPassport passport
-	}
-	tests := []struct {
-		name string
-		args args
-		want passport
-	}{
-		// TODO: Add test cases.
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			if got := validateIyr(tt.args.inputString, tt.args.currentPassport); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("validateIyr() = %v, want %v", got, tt.want)
 			}
 		})
 	}
