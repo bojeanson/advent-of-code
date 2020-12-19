@@ -17,7 +17,7 @@ func TestResolveDay4(t *testing.T) {
 		{
 			name: "Should return 5 valid passports",
 			args: args{
-				filename: "test_input.txt",
+				filename: "test_input_part_1.txt",
 			},
 			want: 5,
 		},

@@ -14,8 +14,8 @@ func TestResolveDay6(t *testing.T) {
 		args args
 		want int
 	}{
-		{name: "Should count 6 answers", args: args{part: "1", filename: "test_input.txt"}, want: 11},
-		{name: "Should count 6 answers", args: args{part: "2", filename: "test_input.txt"}, want: 6},
+		{name: "Should count 6 answers", args: args{part: "1", filename: "test_input_part_1.txt"}, want: 11},
+		{name: "Should count 6 answers", args: args{part: "2", filename: "test_input_part_1.txt"}, want: 6},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

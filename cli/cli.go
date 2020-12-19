@@ -45,6 +45,7 @@ var (
 
 	day7           = app.Command("day_7", "resolve day_7 problem")
 	day7Action     = day7.Action(uday7)
+	part1Or2Day7   = day7.Arg("part", "which part of day_7 problem to resolve").Default("1").String()
 	inputFilePath7 = day7.Arg("input_file", "the path to the file needed for day_7 problem").Default("./day_7/input.txt").String()
 )
 
@@ -94,7 +95,7 @@ func uday6(c *kingpin.ParseContext) error {
 }
 
 func uday7(c *kingpin.ParseContext) error {
-	bagAllowingShinyGolgBagNumber := day_7.ResolveDay7(*inputFilePath7)
+	bagAllowingShinyGolgBagNumber := day_7.ResolveDay7(*part1Or2Day7, *inputFilePath7)
 	fmt.Println("nombre de sacs pouvant contenir mon sac :", bagAllowingShinyGolgBagNumber)
 	return nil
 }
