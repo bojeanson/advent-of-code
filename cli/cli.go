@@ -9,6 +9,7 @@ import (
 	"github.com/bojeanson/advent_of_code/day_5"
 	"github.com/bojeanson/advent_of_code/day_6"
 	"github.com/bojeanson/advent_of_code/day_7"
+	"github.com/bojeanson/advent_of_code/day_8"
 	"os"
 
 	"gopkg.in/alecthomas/kingpin.v2"
@@ -47,6 +48,11 @@ var (
 	day7Action     = day7.Action(uday7)
 	part1Or2Day7   = day7.Arg("part", "which part of day_7 problem to resolve").Default("1").String()
 	inputFilePath7 = day7.Arg("input_file", "the path to the file needed for day_7 problem").Default("./day_7/input.txt").String()
+
+	day8           = app.Command("day_8", "resolve day_8 problem")
+	day8Action     = day8.Action(uday8)
+	part1Or2Day8   = day8.Arg("part", "which part of day_8 problem to resolve").Default("1").String()
+	inputFilePath8 = day8.Arg("input_file", "the path to the file needed for day_8 problem").Default("./day_8/input.txt").String()
 )
 
 func Parse(args []string) {
@@ -97,5 +103,11 @@ func uday6(c *kingpin.ParseContext) error {
 func uday7(c *kingpin.ParseContext) error {
 	bagAllowingShinyGolgBagNumber := day_7.ResolveDay7(*part1Or2Day7, *inputFilePath7)
 	fmt.Println("nombre de sacs pouvant contenir mon sac :", bagAllowingShinyGolgBagNumber)
+	return nil
+}
+
+func uday8(c *kingpin.ParseContext) error {
+	acc := day_8.ResolveDay8(*part1Or2Day8, *inputFilePath8)
+	fmt.Println("Valeur de l'accumulateur :", acc)
 	return nil
 }
