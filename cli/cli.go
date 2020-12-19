@@ -8,6 +8,7 @@ import (
 	"github.com/bojeanson/advent_of_code/day_4"
 	"github.com/bojeanson/advent_of_code/day_5"
 	"github.com/bojeanson/advent_of_code/day_6"
+	"github.com/bojeanson/advent_of_code/day_7"
 	"os"
 
 	"gopkg.in/alecthomas/kingpin.v2"
@@ -41,6 +42,10 @@ var (
 	day6Action     = day6.Action(uday6)
 	part1Or2Day6   = day6.Arg("part", "which part of day_6 problem to resolve").Default("1").String()
 	inputFilePath6 = day6.Arg("input_file", "the path to the file needed for day_6 problem").Default("./day_6/input.txt").String()
+
+	day7           = app.Command("day_7", "resolve day_7 problem")
+	day7Action     = day7.Action(uday7)
+	inputFilePath7 = day7.Arg("input_file", "the path to the file needed for day_7 problem").Default("./day_7/input.txt").String()
 )
 
 func Parse(args []string) {
@@ -78,12 +83,18 @@ func uday4(c *kingpin.ParseContext) error {
 
 func uday5(c *kingpin.ParseContext) error {
 	validPassports := day_5.ResolveDay5(*inputFilePath5)
-	fmt.Println("My seat ID :", validPassports)
+	fmt.Println("mon id de siège :", validPassports)
 	return nil
 }
 
 func uday6(c *kingpin.ParseContext) error {
 	nbAnswers := day_6.ResolveDay6(*part1Or2Day6, *inputFilePath6)
-	fmt.Println("Nombre de réponses répondues :", nbAnswers)
+	fmt.Println("nombre de questions répondues :", nbAnswers)
+	return nil
+}
+
+func uday7(c *kingpin.ParseContext) error {
+	bagAllowingShinyGolgBagNumber := day_7.ResolveDay7(*inputFilePath7)
+	fmt.Println("nombre de sacs pouvant contenir mon sac :", bagAllowingShinyGolgBagNumber)
 	return nil
 }
