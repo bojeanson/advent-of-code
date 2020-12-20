@@ -8,42 +8,43 @@ import (
 )
 
 func ResolveDay8(part string, filename string) int {
-	var instructions []instruction
+	var originalInstructions []instruction
 	for inputString := range utils.StringIteratorFromFile(filename) {
-		instructions = append(instructions, parseInputLine(inputString))
+		originalInstructions = append(originalInstructions, parseInputLine(inputString))
 	}
-	return infiniteLoop(instructions)
+	runInstructionIndexes, _, acc := infiniteLoop(originalInstructions)
+	if part == "1" {
+		return acc
+	}
+	acc = fixProgram(originalInstructions, runInstructionIndexes)
+	return acc
 }
 
-func infiniteLoop(instructions []instruction) int {
+func infiniteLoop(instructions []instruction) ([]int, bool, int) {
 	index := 0
 	var acc int
 	visitedIndex := map[int]int{}
 	ok := false
-	for {
+	var runInstructionIndexes []int
+	for index < len(instructions) {
+		visitedIndex, ok = updateVisitedIndex(visitedIndex, index)
+		if ok {
+			return runInstructionIndexes, true, acc
+		}
 		switch instructions[index].operator {
 		case "nop":
-			visitedIndex, ok = updateVisitedIndex(visitedIndex, index)
-			if ok {
-				return acc
-			}
+			runInstructionIndexes = append(runInstructionIndexes, index)
 			index += 1
 		case "acc":
-			visitedIndex, ok = updateVisitedIndex(visitedIndex, index)
-			if ok {
-				return acc
-			}
 			if instructions[index].sign == "+" {
 				acc += instructions[index].value
 			} else {
 				acc -= instructions[index].value
 			}
+			runInstructionIndexes = append(runInstructionIndexes, index)
 			index += 1
 		case "jmp":
-			visitedIndex, ok = updateVisitedIndex(visitedIndex, index)
-			if ok {
-				return acc
-			}
+			runInstructionIndexes = append(runInstructionIndexes, index)
 			if instructions[index].sign == "+" {
 				index += instructions[index].value
 			} else {
@@ -51,6 +52,33 @@ func infiniteLoop(instructions []instruction) int {
 			}
 		}
 	}
+	return runInstructionIndexes, false, acc
+}
+
+func fixProgram(originalInstructions []instruction, runInstructionIndexes []int) int {
+	wasInfiniteLoop := true
+	acc := 0
+	for wasInfiniteLoop {
+		for i := 0; i < len(runInstructionIndexes); i++ {
+			acc = 0
+			instructionIndex := runInstructionIndexes[i]
+			fixedInstructions := make([]instruction, len(originalInstructions))
+			copy(fixedInstructions, originalInstructions)
+			switch fixedInstructions[instructionIndex].operator {
+			case "jmp":
+				fixedInstructions[instructionIndex].operator = "nop"
+			case "nop":
+				fixedInstructions[instructionIndex].operator = "jmp"
+			default:
+				continue
+			}
+			_, wasInfiniteLoop, acc = infiniteLoop(fixedInstructions)
+			if !wasInfiniteLoop {
+				break
+			}
+		}
+	}
+	return acc
 }
 
 func updateVisitedIndex(visitedIndex map[int]int, index int) (map[int]int, bool) {

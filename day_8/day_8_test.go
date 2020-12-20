@@ -13,6 +13,7 @@ func TestResolveDay8(t *testing.T) {
 		want int
 	}{
 		{name: "Should", args: args{part: "1", filename: "test_input_file.txt"}, want: 5},
+		{name: "Should", args: args{part: "2", filename: "test_input_file.txt"}, want: 8},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
