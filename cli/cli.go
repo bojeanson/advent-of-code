@@ -185,8 +185,8 @@ func uday8(c *kingpin.ParseContext) error {
 }
 
 func uday9(c *kingpin.ParseContext) error {
-	_ = day_9.ResolveDay9(*part1Or2Day9, *inputFilePath9)
-	fmt.Println("")
+	invalidNumber := day_9.ResolveDay9(*part1Or2Day9, *inputFilePath9)
+	fmt.Println("nombre invalide :", invalidNumber)
 	return nil
 }
 
